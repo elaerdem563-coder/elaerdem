@@ -2,8 +2,10 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Projects from "@/components/Projects";
 import Stats from "@/components/Stats";
-import Skills from "@/components/Skills";
 import Education from "@/components/Education";
+import Experience from "@/components/Experience";
+import Certificates from "@/components/Certificates";
+import Skills from "@/components/Skills";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -14,8 +16,10 @@ export default function Home() {
         <Hero />
         <Projects />
         <Stats />
-        <Skills />
         <Education />
+        <Experience />
+        <Certificates />
+        <Skills />
       </main>
       <Footer />
     </div>

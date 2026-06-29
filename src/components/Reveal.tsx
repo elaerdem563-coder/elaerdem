@@ -1,40 +1,41 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 
-type Props = {
-  children: React.ReactNode;
-  className?: string;
+export default function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: ReactNode;
   delay?: number;
-};
-
-export default function Reveal({ children, className = "", delay = 0 }: Props) {
-  const ref = useRef<HTMLDivElement | null>(null);
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
   const [shown, setShown] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver(
+    const obs = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setShown(true);
-            io.disconnect();
+            obs.disconnect();
           }
         });
       },
       { threshold: 0.15 }
     );
-    io.observe(el);
-    return () => io.disconnect();
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   const style: CSSProperties = { transitionDelay: `${delay}ms` };
 
   return (
-    <div ref={ref} className={`reveal ${shown ? "in" : ""} ${className}`} style={style}>
+    <div ref={ref} style={style} className={`reveal ${className} ${shown ? "in" : ""}`}>
       {children}
     </div>
   );
