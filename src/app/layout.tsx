@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Press_Start_2P, Inter } from "next/font/google";
+import { Inter, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
 const pixel = Press_Start_2P({
@@ -16,16 +16,16 @@ const sans = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ela Erdem — Software Developer",
+  title: "Ela Erdem - Software Developer",
   description:
-    "Ela Erdem — Software Developer / AI Projects / Interactive Products. Retro arcade temalı kişisel portfolyo.",
+    "Ela Erdem - Software Developer / AI Projects / Interactive Products. Retro arcade temali kisisel portfolyo.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="tr">
       <body className={`${pixel.variable} ${sans.variable}`}>{children}</body>

@@ -1,37 +1,43 @@
+import type { CSSProperties } from "react";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
-import type { CSSProperties } from "react";
 
 const SKILLS = [
-  { name: "Python", pct: 88, color: "#2f6df6" },
-  { name: "TypeScript", pct: 82, color: "#e8453c" },
-  { name: "React", pct: 85, color: "#2f6df6" },
-  { name: "Next.js", pct: 80, color: "#f4c534" },
-  { name: "Node.js", pct: 76, color: "#2fa457" },
-  { name: "AI / LLM", pct: 72, color: "#9b51e0" },
-  { name: "UI / UX", pct: 74, color: "#e8453c" },
+  { name: "Python", pct: 90, color: "#1765f5" },
+  { name: "TypeScript", pct: 84, color: "#e83f45" },
+  { name: "React", pct: 86, color: "#1765f5" },
+  { name: "Next.js", pct: 82, color: "#f5c82f" },
+  { name: "Node.js", pct: 76, color: "#26b463" },
+  { name: "AI / LLM", pct: 78, color: "#8f51e8" },
+  { name: "UI / UX", pct: 74, color: "#e83f45" },
+  { name: "Supabase / PostgreSQL", pct: 80, color: "#26b463" },
 ];
 
 export default function Skills() {
   return (
-    <section id="skills" className="scroll-mt-24 px-4 lg:px-6 py-10">
-      <div className="max-w-6xl mx-auto">
+    <section id="skills" className="page-band section-block">
+      <div className="page-inner">
         <SectionHead
           eyebrow="06 / SKILLS"
           title="Yeteneklerim"
-          desc="Sürekli geliştirdiğim teknik cephanem."
+          desc="Ürün geliştirme, yapay zeka entegrasyonu ve modern web arayüzleri için kullandığım ana araçlar."
         />
-        <div className="grid sm:grid-cols-2 gap-x-8 gap-y-5 mt-8">
-          {SKILLS.map((s, i) => {
-            const fill: CSSProperties = {};
-            (fill as Record<string, string>)["--pct"] = `${s.pct}%`;
-            (fill as Record<string, string>)["color"] = s.color;
+
+        <div className="grid gap-x-9 gap-y-5 md:grid-cols-2 xl:grid-cols-4">
+          {SKILLS.map((skill, index) => {
+            const fill = {
+              "--pct": `${skill.pct}%`,
+              color: skill.color,
+            } as CSSProperties;
+
             return (
-              <Reveal key={s.name} delay={i * 90}>
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-pixel text-[10px] text-[#17140f]">{s.name}</span>
-                    <span className="text-[#f4c534]">★</span>
+              <Reveal key={skill.name} delay={index * 80}>
+                <div className="border-[3px] border-[#14110c] bg-[#fffaf0] p-4 shadow-[4px_4px_0_0_#14110c]">
+                  <div className="mb-3 flex min-h-8 items-center justify-between gap-3">
+                    <span className="font-pixel text-[9px] leading-4 text-[#14110c]">{skill.name}</span>
+                    <span className="grid h-6 w-6 place-items-center border-2 border-[#14110c] bg-[#f5c82f] text-[11px] font-black">
+                      ★
+                    </span>
                   </div>
                   <div className="skill-track">
                     <div className="skill-fill" style={fill} />

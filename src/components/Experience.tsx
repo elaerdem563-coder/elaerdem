@@ -1,62 +1,80 @@
+import { Blocks, Cpu, Palette, Workflow } from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
 import Reveal from "@/components/Reveal";
 import SectionHead from "@/components/SectionHead";
-import type { CSSProperties } from "react";
 
-const JOBS = [
+const MISSIONS: Array<{
+  icon: ReactNode;
+  title: string;
+  text: string;
+  tags: string[];
+  color: string;
+}> = [
   {
-    role: "Kurucu Ortak & Yazılım Geliştirici",
-    org: "KatipÖzet",
-    period: "2023 — Günümüz",
-    desc: "AI destekli hukuki özetleme platformunun ürün ve teknik geliştirmesini yürütüyorum. OCR, LLM tabanlı özetleme ve hukuki hesaplama araçları.",
-    tags: ["Ürün", "Full-stack", "AI/LLM"],
-    color: "#2f6df6",
+    icon: <Cpu size={30} strokeWidth={3} />,
+    title: "AI Product Builder",
+    text: "Canlı ürünlerde LLM entegrasyonları, özetleme akışları, kullanıcı geri bildirimiyle iyileştirme ve ürün mantığı kurma.",
+    tags: ["AI", "LLM", "Product"],
+    color: "#1765f5",
   },
   {
-    role: "Freelance Yazılım Geliştirici",
-    org: "Bağımsız",
-    period: "2022 — Günümüz",
-    desc: "Web ve yapay zeka odaklı projeler geliştiriyorum: Miandela, Ucuz Uçak ve çeşitli arayüz/otomasyon çalışmaları.",
-    tags: ["React", "Next.js", "Otomasyon"],
-    color: "#e8453c",
+    icon: <Blocks size={30} strokeWidth={3} />,
+    title: "Full-Stack / Web Development",
+    text: "Modern web arayüzleri, backend servisleri, veritabanı kurgusu ve uçtan uca ürün geliştirme deneyimi.",
+    tags: ["Next.js", "React", "Backend"],
+    color: "#e83f45",
   },
   {
-    role: "Pilotaj Eğitimi / Operasyonel",
-    org: "Özyeğin Üniversitesi",
-    period: "Devam ediyor",
-    desc: "Havacılık disiplini, kriz yönetimi ve operasyonel karar verme üzerine uygulamalı eğitim.",
-    tags: ["Havacılık", "CRM", "Karar"],
-    color: "#2fa457",
+    icon: <Workflow size={30} strokeWidth={3} />,
+    title: "Automation & Bots",
+    text: "Tekrarlı işleri hızlandıran otomasyonlar, API bağlantıları, bot akışları ve veri odaklı yardımcı sistemler.",
+    tags: ["Python", "API", "Bots"],
+    color: "#f5c82f",
+  },
+  {
+    icon: <Palette size={30} strokeWidth={3} />,
+    title: "Product Design / UI Thinking",
+    text: "Kullanıcı ihtiyacını hızlı prototiplere dönüştürme, arayüz kararlarını test etme ve okunabilir deneyimler tasarlama.",
+    tags: ["UI/UX", "Prototype", "Feedback"],
+    color: "#26b463",
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="scroll-mt-24 px-4 lg:px-6 py-10">
-      <div className="max-w-6xl mx-auto">
+    <section id="experience" className="page-band section-block">
+      <div className="page-inner">
         <SectionHead
           eyebrow="04 / EXPERIENCE"
-          title="Deneyim"
-          desc="Ürettiğim ürünler ve üzerinde çalıştığım roller."
+          title="Experience Log"
+          desc="Canlı ürün geliştirme, kullanıcı geri bildirimiyle iyileştirme, backend/web sistemleri, otomasyon ve yapay zeka entegrasyonları."
         />
-        <div className="grid md:grid-cols-3 gap-6 mt-8">
-          {JOBS.map((j, i) => {
-            const bar: CSSProperties = { backgroundColor: j.color };
+
+        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {MISSIONS.map((mission, index) => {
+            const style = { "--card-accent": mission.color } as CSSProperties;
             return (
-              <Reveal key={j.role} delay={i * 140}>
-                <div className="game-card h-full flex flex-col">
-                  <div className="h-2" style={bar} />
-                  <div className="p-4 flex flex-col flex-1">
-                    <span className="font-pixel text-[9px] text-[#17140f]/45">{j.period}</span>
-                    <h3 className="font-bold text-[#17140f] mt-2">{j.role}</h3>
-                    <p className="text-[12px] font-semibold text-[#2f6df6] mt-1">{j.org}</p>
-                    <p className="text-[13px] text-[#17140f]/70 mt-2 leading-relaxed flex-1">{j.desc}</p>
-                    <div className="flex flex-wrap gap-1.5 mt-3">
-                      {j.tags.map((t) => (
-                        <span key={t} className="pixel-tag px-2 py-1 text-[9px] font-bold">{t}</span>
+              <Reveal key={mission.title} delay={index * 110}>
+                <article className="game-card flex h-full min-h-[320px] flex-col overflow-hidden bg-[#fffaf0]" style={style}>
+                  <div className="relative z-10 flex items-center justify-between border-b-[4px] border-[#14110c] px-4 py-3" style={{ backgroundColor: mission.color }}>
+                    <span className="font-pixel text-[9px] text-[#14110c]">MISSION</span>
+                    <span className="h-3 w-3 border-2 border-[#14110c] bg-[#fffaf0]" />
+                  </div>
+                  <div className="relative z-10 flex flex-1 flex-col p-5">
+                    <span className="grid h-16 w-16 place-items-center border-[4px] border-[#14110c] bg-[#fffaf0] shadow-[4px_4px_0_0_#14110c]" style={{ color: mission.color }}>
+                      {mission.icon}
+                    </span>
+                    <h3 className="mt-5 font-pixel text-[14px] leading-6 text-[#14110c]">{mission.title}</h3>
+                    <p className="mt-4 flex-1 text-[14px] font-semibold leading-7 text-[#4a4238]">{mission.text}</p>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {mission.tags.map((tag) => (
+                        <span key={tag} className="pixel-tag px-2 py-1.5 font-pixel text-[8px]">
+                          {tag}
+                        </span>
                       ))}
                     </div>
                   </div>
-                </div>
+                </article>
               </Reveal>
             );
           })}
