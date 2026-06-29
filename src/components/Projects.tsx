@@ -47,4 +47,38 @@ export default function Projects() {
             const bg: CSSProperties = { backgroundColor: p.accent };
             const text: CSSProperties = { color: p.accent };
             return (
-              <Reveal key={p.name
+              <Reveal key={p.name} delay={i * 140}>
+                <article className="game-card h-full flex flex-col" style={border}>
+                  <div className="flex items-center gap-2.5 px-4 py-3 border-b-[3px] border-[#17140f]" style={bg}>
+                    <span className="w-8 h-8 grid place-items-center bg-[#fffdf6] border-[3px] border-[#17140f] text-base">{p.icon}</span>
+                    <h3 className="font-pixel text-[11px] text-white tracking-tight">{p.name}</h3>
+                  </div>
+                  <div className="p-4 flex flex-col flex-1">
+                    <p className="text-[13px] text-[#17140f]/75 leading-relaxed">{p.desc}</p>
+                    <div className="grid grid-cols-3 gap-2 mt-4">
+                      {p.metrics.map((m) => (
+                        <div key={m.l} className="pixel-box-sm px-2 py-2 text-center">
+                          <div className="font-pixel text-[10px]" style={text}>{m.v}</div>
+                          <div className="text-[10px] text-[#17140f]/55 mt-1">{m.l}</div>
+                        </div>
+                      ))}
+                      <div className="pixel-box-sm px-2 py-2 text-center">
+                        <div className="font-pixel text-[10px] text-[#2fa457]">✓</div>
+                        <div className="text-[10px] text-[#17140f]/55 mt-1">canlı</div>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap gap-1.5 mt-4">
+                      {p.tech.map((t) => (
+                        <span key={t} className="pixel-tag px-2 py-1 text-[8px] font-pixel">{t}</span>
+                      ))}
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
