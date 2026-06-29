@@ -6,10 +6,17 @@ export default function Hero() {
   const [speech, setSpeech] = useState("HOVER TO UNLOCK");
 
   return (
-    <section id="hero" className="scroll-mt-20 pt-28 pb-16 px-5 lg:px-8">
+    <section id="hero" className="scroll-mt-20 pt-12 pb-16 px-5 lg:px-8">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
         <div className="reveal in">
-          <span className="pixel-tag px-3 py-1 text-[10px] font-pixel text-[#2f6df6]">PLAYER 1</span>
+          <div className="flex items-center gap-3">
+            <span className="pixel-tag px-3 py-1 text-[10px] font-pixel text-[#2f6df6]">PLAYER 1</span>
+            <span className="flex items-center gap-1">
+              <Heart />
+              <Heart />
+              <Heart />
+            </span>
+          </div>
           <h1 className="font-pixel text-[#17140f] leading-[1.15] mt-5 text-4xl sm:text-5xl lg:text-6xl">
             ELA<br />ERDEM
           </h1>
@@ -81,6 +88,19 @@ export default function Hero() {
         </div>
       </div>
     </section>
+  );
+}
+
+function Heart() {
+  return (
+    <svg width="18" height="16" viewBox="0 0 7 6" shapeRendering="crispEdges" fill="#e8453c">
+      <rect x="1" y="0" width="2" height="1" />
+      <rect x="4" y="0" width="2" height="1" />
+      <rect x="0" y="1" width="7" height="2" />
+      <rect x="1" y="3" width="5" height="1" />
+      <rect x="2" y="4" width="3" height="1" />
+      <rect x="3" y="5" width="1" height="1" />
+    </svg>
   );
 }
 

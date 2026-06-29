@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <>
+    <div className="page-frame">
       <Header />
       <main>
         <Hero />
@@ -18,6 +18,6 @@ export default function Home() {
         <Education />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }
